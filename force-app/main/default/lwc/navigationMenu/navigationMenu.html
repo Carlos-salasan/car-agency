@@ -1,0 +1,54 @@
+<template>
+    <lightning-card>
+    <div class="slds-p-around_medium">
+        <lightning-layout>
+            <div>
+                <lightning-layout-item padding="around-medium">
+                    <ul class="slds-list_horizontal">
+                        <li><lightning-button class="slds-m-horizontal_none" label="Home" onclick={atHome}></lightning-button></li>
+                        <li><lightning-button class="slds-m-horizontal_none" label="Cars/Model" onclick={atCars}></lightning-button></li>
+                        <li><lightning-button class="slds-m-horizontal_none" label="Appointments" onclick={atAppointments}></lightning-button></li>
+                        <template if:false={isAdmin}><li><lightning-button class="slds-m-horizontal_none" label="Simulator" onclick={atSimulator}></lightning-button></li></template>
+                        <template if:false={isAdmin}><li><c-log-in></c-log-in></li></template>
+                        <template if:true={isAdmin}><li><c-log-out></c-log-out></li></li></template>
+                    </ul>
+                </lightning-layout-item>
+            </div>
+        </lightning-layout>
+
+        <template if:true={carsValue}>
+            <div class="tabContent">
+                <template if:true={isAdmin}>
+                    <c-cars-model></c-cars-model>
+                    <c-datatable-custom-data-type></c-datatable-custom-data-type>
+                </template>                        
+                <template if:false={isAdmin}>
+                    <c-clients-table></c-clients-table>
+                </template>
+            </div>
+        </template>         
+
+        <template if:true={simulatorValue}>
+            <div class="tabContent">
+                <c-simulator></c-simulator>
+            </div>
+        </template>
+
+        <template if:true={homeValue}>                      
+            <div class="slds-align_absolute-center">
+                <c-image-carousel class="slds-align_absolute-center"></c-image-carousel>
+            </div>
+        </template>
+        
+        <template if:true={appointmentsValue}>
+            <template if:true={isAdmin}>
+                <c-leads-table></c-leads-table>
+            </template>
+            
+            <template if:false={isAdmin}>
+                <c-appointments></c-appointments>
+            </template>
+        </template>
+    </div>
+    </lightning-card> 
+</template>

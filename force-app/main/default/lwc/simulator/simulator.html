@@ -1,0 +1,36 @@
+<template>
+    <lightning-card>
+        <lightning-combobox 
+            class="slds-p-around_xx-small"
+            label="Model" 
+            placeholder="Select Model"
+            onchange={handleModelChange} 
+            options={modelVal}>
+        </lightning-combobox>
+        <lightning-input class="slds-p-around_xx-small" label="Amount" type="number" formatter="currency" onchange={handleAmountChange}></lightning-input>
+        <lightning-input class="slds-p-around_xx-small" label="Down Payment" type="number" formatter="currency" onchange={handleDownPaymentChange}></lightning-input>
+        <lightning-combobox 
+            class="slds-p-around_xx-small"
+            label="Term" 
+            placeholder="Select Term"
+            onchange={handleTermChange} 
+            options={termVal}>
+        </lightning-combobox>
+        <lightning-button class="slds-p-around_xx-small" variant="brand-outline" label="Calculate" onclick={calculatePayment}></lightning-button>
+        <lightning-button class="slds-p-around_xx-small" variant="brand-outline" label="Download as CSV" onclick={downloadCSV}></lightning-button>
+    </lightning-card>
+
+    <lightning-card>
+        <div class="slds-m-around_medium">
+            <template if:true={allData}>
+                <lightning-datatable
+                    key-field="term"
+                    data={allData}
+                    columns={columns}
+                    hide-checkbox-column = true>
+                </lightning-datatable>
+            </template>
+        </div>
+    </lightning-card>
+
+</template>

@@ -1,0 +1,18 @@
+<template>
+    <div class="slds-size_3-of-4">
+        <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+            <lightning-carousel>
+                <template for:each={products} for:item="product">
+                    <lightning-carousel-image
+                        key = {product.Id}
+                        src = {product.DisplayUrl}
+                        header = {product.Name}
+                        description = {product.Price__c}
+                        alternative-text = {product.Name}
+                        href = "javascript:void(0);">
+                    </lightning-carousel-image>
+                </template>
+            </lightning-carousel>
+        </div>
+    </div>
+</template>

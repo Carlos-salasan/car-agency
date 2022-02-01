@@ -1,0 +1,17 @@
+<template>
+    <lightning-card>
+        <div class="slds-var-m-around_medium">
+            <template if:true={products.data}>
+                <c-custom-data-types
+                    key-field="Id"
+                    data={products.data}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                    onsave={handleSave}
+                    draft-values={draftValues}>
+                </c-custom-data-types>
+            </template>
+        </div>
+    </lightning-card>
+</template>
+

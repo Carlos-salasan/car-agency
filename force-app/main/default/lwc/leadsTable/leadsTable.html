@@ -1,0 +1,63 @@
+<!-- apexContactsForAccount.html -->
+<template>
+    <lightning-card>
+        <div class="slds-m-around_medium">
+            <template if:true={allWebToLeadLeads}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={allWebToLeadLeads}
+                    columns={columns}
+                    hide-checkbox-column = true
+                    onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </template>
+        </div>
+    </lightning-card>
+
+    <template if:true={isModalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-card title="Update Lead" icon-name="utility:cart" >
+                        <lightning-input name="FirstName" label="First Name" value={record.FirstName} onchange={handleFNameChange} class="slds-p-around_xx-small"></lightning-input>
+                        <lightning-input label="Last Name" value={record.LastName} onchange={handleLNameChange} class="slds-p-around_xx-small"></lightning-input>
+                        <lightning-input label="Email" value={record.Email} type="email" onchange={handleEmailChange} class="slds-p-around_xx-small"></lightning-input>
+                        <lightning-input label="Company" value={record.Company} onchange={handleCompanyChange} class="slds-p-around_xx-small"></lightning-input>
+                        <lightning-input label="City" value={record.City} onchange={handleCityChange} class="slds-p-around_xx-small"></lightning-input>
+                        <lightning-input label="State" value={record.State} onchange={handleStateChange} class="slds-p-around_xx-small"></lightning-input>
+                        
+                        <lightning-button class="slds-p-around_xx-small slds-float_right" variant="brand-outline" label="Update" onclick={updateLead}></lightning-button>
+                        <lightning-button class="slds-p-around_xx-small slds-float_right" variant="brand-outline" label="Close" onclick={closeModal}></lightning-button>
+                    </lightning-card>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template if:true={isAssignModalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-card title="Assign Lead" icon-name="utility:cart" >
+                        <lightning-combobox 
+                            class="slds-p-around_xx-small"
+                            label="Assign" 
+                            placeholder="Select the user to Assign the Lead"
+                            value={userselected}
+                            onchange={handleUserChange} 
+                            options={userVal}>
+                        </lightning-combobox>
+                        
+                        <lightning-button class="slds-p-around_xx-small slds-float_right" variant="brand-outline" label="Assign" onclick={assignLead}></lightning-button>
+                        <lightning-button class="slds-p-around_xx-small slds-float_right" variant="brand-outline" label="Close" onclick={closeModal}></lightning-button>
+                    </lightning-card>
+                </div>
+            </div>
+        </section>
+    </template>
+
+</template>

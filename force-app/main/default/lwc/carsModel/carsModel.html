@@ -1,0 +1,52 @@
+<template>
+    <!-- lightning button for open modal window -->
+    <lightning-button variant="brand"
+       label="Create a new Car"
+       title="Create a new Car"
+       onclick={openModal}
+       class="slds-m-left_x-small">
+    </lightning-button>
+    <!--Use template if:true to display/hide popup based on isModalOpen value--> 
+    <template if:true={isModalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-card title="New Car" icon-name="utility:cart" >
+                        <lightning-input label="Name" onchange={handleNameChange} class="slds-p-around_xx-small"></lightning-input>
+                        <lightning-combobox 
+                            class="slds-p-around_xx-small"
+                            name="model"
+                            label="Model" 
+                            placeholder="Select Model"
+                            onchange={handleModelChange} 
+                            options={modelVal}>
+                        </lightning-combobox>
+                        <lightning-combobox 
+                            class="slds-p-around_xx-small"
+                            label="Brand" 
+                            placeholder="Select Brand"
+                            onchange={handleBrandChange} 
+                            options={brandVal}>
+                        </lightning-combobox>
+                        <lightning-input type="file" class="slds-p-around_xx-small" accept="image/jpeg, image/png" label="Attachment"  onchange={handleFilesChange} ></lightning-input>
+                        <div class="slds-text-body_small slds-text-color_error">{fileName}</div>
+                        <lightning-combobox 
+                            class="slds-p-around_xx-small"
+                            label="Color" 
+                            placeholder="Select Color"
+                            onchange={handleColorChange} 
+                            options={colorVal}>
+                        </lightning-combobox>
+                        <lightning-input class="slds-p-around_xx-small" label="Price" type="number" formatter="currency" onchange={handlePriceChange}></lightning-input>
+                        <lightning-input class="slds-p-around_xx-small" label="Is Active" type="checkbox" onchange={handleIsActiveChange}></lightning-input>
+                        <lightning-button class="slds-p-around_xx-small slds-float_right" variant="brand-outline" label="Create" disabled={isCreated} onclick={createProduct}></lightning-button>
+                        <lightning-button class="slds-p-around_xx-small slds-float_right" variant="destructive-text" label="Close" onclick={closeModal}></lightning-button>
+                    </lightning-card>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+ </template>

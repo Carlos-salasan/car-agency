@@ -1,0 +1,40 @@
+<template>
+    <lightning-card>
+        <lightning-combobox 
+            class="slds-p-around_xx-small"
+            name="model"
+            label="Model" 
+            placeholder="Select Model"
+            onchange={handleModelChange} 
+            options={modelVal}>
+        </lightning-combobox>
+        <lightning-combobox 
+            class="slds-p-around_xx-small"
+            label="Brand" 
+            placeholder="Select Brand"
+            onchange={handleBrandChange} 
+            options={brandVal}>
+        </lightning-combobox>
+        <lightning-combobox 
+            class="slds-p-around_xx-small"
+            label="Color" 
+            placeholder="Select Color"
+            onchange={handleColorChange} 
+            options={colorVal}>
+        </lightning-combobox>
+        <lightning-button class="slds-p-around_xx-small" variant="brand-outline" label="Search" onclick={searchProduct}></lightning-button>
+    </lightning-card>
+    
+    <lightning-card>
+        <div class="slds-var-m-around_medium">
+            <template if:true={products}>
+                <c-custom-data-types
+                    key-field="Id"
+                    data={products}
+                    columns={columns}
+                    hide-checkbox-column="true">
+                </c-custom-data-types>
+            </template>
+        </div>
+    </lightning-card>
+</template>
